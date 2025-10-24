@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Functional Programming | Blog của [Tên bạn]</title>
+<meta name="keywords" content="">
+<meta name="description" content="Blog chia sẻ về Java &amp; JavaScript">
+<meta name="author" content="Tên của bạn">
+<link rel="canonical" href="http://localhost:1313/tags/functional-programming/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a482bf00fa5c046040ef7973ad5fdf5657890cacb596c93f1382f664ca542074.css" integrity="sha256-pIK/APpcBGBA73lzrV/fVleJDKy1lsk/E4L2ZMpUIHQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/tags/functional-programming/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/tags/functional-programming/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Blog của [Tên bạn] (Alt + H)">Blog của [Tên bạn]</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="Profile">
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/tags/">Tags</a></div>
+  <h1>
+    Functional Programming
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Stream API trong Java 8&#43;
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Stream API trong Java Stream API (Java 8&#43;) cho phép xử lý tập hợp dữ liệu theo phong cách functional programming.
+Stream là gì? Stream là chuỗi các phần tử hỗ trợ các thao tác tuần tự và song song.
+Đặc điểm:
+Không lưu trữ dữ liệu Functional - không thay đổi nguồn Lazy evaluation - chỉ tính khi cần Có thể vô hạn Tạo Stream import java.util.Arrays; import java.util.List; import java.util.stream.Stream; public class CreateStreamExample { public static void main(String[] args) { // 1. Từ Collection List&lt;String&gt; list = Arrays.asList(&#34;A&#34;, &#34;B&#34;, &#34;C&#34;); Stream&lt;String&gt; stream1 = list.stream(); // 2. Từ Array String[] array = {&#34;X&#34;, &#34;Y&#34;, &#34;Z&#34;}; Stream&lt;String&gt; stream2 = Arrays.stream(array); // 3. Từ Stream.of() Stream&lt;Integer&gt; stream3 = Stream.of(1, 2, 3, 4, 5); // 4. Stream vô hạn Stream&lt;Integer&gt; infiniteStream = Stream.iterate(0, n -&gt; n &#43; 2); // 5. Stream.generate() Stream&lt;Double&gt; randomNumbers = Stream.generate(Math::random); } } Filter - Lọc phần tử import java.util.List; import java.util.stream.Collectors; public class FilterExample { public static void main(String[] args) { List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // Lọc số chẵn List&lt;Integer&gt; evenNumbers = numbers.stream() .filter(n -&gt; n % 2 == 0) .collect(Collectors.toList()); System.out.println(&#34;Số chẵn: &#34; &#43; evenNumbers); // Output: [2, 4, 6, 8, 10] // Lọc và in ra numbers.stream() .filter(n -&gt; n &gt; 5) .forEach(n -&gt; System.out.println(&#34;Số &gt; 5: &#34; &#43; n)); } } Map - Chuyển đổi phần tử public class MapExample { public static void main(String[] args) { List&lt;String&gt; names = Arrays.asList(&#34;alice&#34;, &#34;bob&#34;, &#34;charlie&#34;); // Chuyển sang chữ hoa List&lt;String&gt; upperNames = names.stream() .map(String::toUpperCase) .collect(Collectors.toList()); System.out.println(upperNames); // Output: [ALICE, BOB, CHARLIE] // Lấy độ dài tên List&lt;Integer&gt; nameLengths = names.stream() .map(String::length) .collect(Collectors.toList()); System.out.println(&#34;Độ dài: &#34; &#43; nameLengths); // Output: [5, 3, 7] // Nhân đôi số List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5); List&lt;Integer&gt; doubled = numbers.stream() .map(n -&gt; n * 2) .collect(Collectors.toList()); System.out.println(&#34;Nhân đôi: &#34; &#43; doubled); // Output: [2, 4, 6, 8, 10] } } Reduce - Tính toán tổng hợp import java.util.Optional; public class ReduceExample { public static void main(String[] args) { List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5); // Tính tổng int sum = numbers.stream() .reduce(0, (a, b) -&gt; a &#43; b); System.out.println(&#34;Tổng: &#34; &#43; sum); // 15 // Hoặc dùng Integer::sum int sum2 = numbers.stream() .reduce(0, Integer::sum); // Tìm max Optional&lt;Integer&gt; max = numbers.stream() .reduce((a, b) -&gt; a &gt; b ? a : b); max.ifPresent(m -&gt; System.out.println(&#34;Max: &#34; &#43; m)); // Tìm min Optional&lt;Integer&gt; min = numbers.stream() .reduce(Integer::min); min.ifPresent(m -&gt; System.out.println(&#34;Min: &#34; &#43; m)); // Nối chuỗi List&lt;String&gt; words = Arrays.asList(&#34;Java&#34;, &#34;Stream&#34;, &#34;API&#34;); String sentence = words.stream() .reduce(&#34;&#34;, (a, b) -&gt; a &#43; &#34; &#34; &#43; b); System.out.println(sentence.trim()); // &#34;Java Stream API&#34; } } Collect - Thu thập kết quả import java.util.stream.Collectors; import java.util.Set; import java.util.Map; public class CollectExample { public static void main(String[] args) { List&lt;String&gt; names = Arrays.asList(&#34;Alice&#34;, &#34;Bob&#34;, &#34;Charlie&#34;, &#34;David&#34;); // Collect to List List&lt;String&gt; filteredNames = names.stream() .filter(n -&gt; n.length() &gt; 4) .collect(Collectors.toList()); // Collect to Set Set&lt;String&gt; nameSet = names.stream() .collect(Collectors.toSet()); // Join strings String joined = names.stream() .collect(Collectors.joining(&#34;, &#34;)); System.out.println(joined); // &#34;Alice, Bob, Charlie, David&#34; // Group by length Map&lt;Integer, List&lt;String&gt;&gt; groupedByLength = names.stream() .collect(Collectors.groupingBy(String::length)); System.out.println(groupedByLength); // {3=[Bob], 5=[Alice, David], 7=[Charlie]} // Count long count = names.stream() .filter(n -&gt; n.startsWith(&#34;A&#34;)) .count(); System.out.println(&#34;Tên bắt đầu bằng A: &#34; &#43; count); } } Sorted - Sắp xếp import java.util.Comparator; public class SortedExample { public static void main(String[] args) { List&lt;String&gt; names = Arrays.asList(&#34;Charlie&#34;, &#34;Alice&#34;, &#34;Bob&#34;, &#34;David&#34;); // Sắp xếp tăng dần List&lt;String&gt; sorted = names.stream() .sorted() .collect(Collectors.toList()); System.out.println(&#34;Tăng dần: &#34; &#43; sorted); // Sắp xếp giảm dần List&lt;String&gt; reverseSorted = names.stream() .sorted(Comparator.reverseOrder()) .collect(Collectors.toList()); System.out.println(&#34;Giảm dần: &#34; &#43; reverseSorted); // Sắp xếp theo độ dài List&lt;String&gt; sortedByLength = names.stream() .sorted(Comparator.comparing(String::length)) .collect(Collectors.toList()); System.out.println(&#34;Theo độ dài: &#34; &#43; sortedByLength); // Sắp xếp số List&lt;Integer&gt; numbers = Arrays.asList(5, 2, 8, 1, 9, 3); List&lt;Integer&gt; sortedNumbers = numbers.stream() .sorted() .collect(Collectors.toList()); System.out.println(&#34;Số sắp xếp: &#34; &#43; sortedNumbers); } } Ví dụ thực tế - Quản lý sinh viên class Student { private String name; private int age; private double gpa; public Student(String name, int age, double gpa) { this.name = name; this.age = age; this.gpa = gpa; } // Getters public String getName() { return name; } public int getAge() { return age; } public double getGpa() { return gpa; } @Override public String toString() { return name &#43; &#34; (GPA: &#34; &#43; gpa &#43; &#34;)&#34;; } } public class StudentStreamExample { public static void main(String[] args) { List&lt;Student&gt; students = Arrays.asList( new Student(&#34;Alice&#34;, 20, 3.8), new Student(&#34;Bob&#34;, 22, 3.2), new Student(&#34;Charlie&#34;, 21, 3.9), new Student(&#34;David&#34;, 23, 3.5), new Student(&#34;Eve&#34;, 20, 3.7) ); // 1. Lọc sinh viên GPA &gt;= 3.5 System.out.println(&#34;=== Sinh viên GPA &gt;= 3.5 ===&#34;); students.stream() .filter(s -&gt; s.getGpa() &gt;= 3.5) .forEach(System.out::println); // 2. Tính GPA trung bình double avgGpa = students.stream() .mapToDouble(Student::getGpa) .average() .orElse(0.0); System.out.println(&#34;\nGPA trung bình: &#34; &#43; avgGpa); // 3. Tìm sinh viên có GPA cao nhất Student topStudent = students.stream() .max(Comparator.comparing(Student::getGpa)) .orElse(null); System.out.println(&#34;Sinh viên xuất sắc nhất: &#34; &#43; topStudent); // 4. Sắp xếp theo GPA giảm dần System.out.println(&#34;\n=== Danh sách theo GPA ===&#34;); students.stream() .sorted(Comparator.comparing(Student::getGpa).reversed()) .forEach(System.out::println); // 5. Lấy danh sách tên sinh viên List&lt;String&gt; names = students.stream() .map(Student::getName) .collect(Collectors.toList()); System.out.println(&#34;\nDanh sách tên: &#34; &#43; names); // 6. Nhóm sinh viên theo tuổi Map&lt;Integer, List&lt;Student&gt;&gt; groupedByAge = students.stream() .collect(Collectors.groupingBy(Student::getAge)); System.out.println(&#34;\nNhóm theo tuổi: &#34; &#43; groupedByAge); // 7. Đếm số sinh viên &gt;= 21 tuổi long count = students.stream() .filter(s -&gt; s.getAge() &gt;= 21) .count(); System.out.println(&#34;\nSố SV &gt;= 21 tuổi: &#34; &#43; count); // 8. Kiểm tra có sinh viên GPA 4.0 không boolean hasTopGpa = students.stream() .anyMatch(s -&gt; s.getGpa() == 4.0); System.out.println(&#34;Có SV GPA 4.0: &#34; &#43; hasTopGpa); // 9. Lấy 3 sinh viên đầu tiên có GPA cao nhất System.out.println(&#34;\n=== Top 3 sinh viên ===&#34;); students.stream() .sorted(Comparator.comparing(Student::getGpa).reversed()) .limit(3) .forEach(System.out::println); } } Parallel Stream - Xử lý song song public class ParallelStreamExample { public static void main(String[] args) { List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // Sequential stream long start1 = System.currentTimeMillis(); int sum1 = numbers.stream() .map(n -&gt; n * 2) .reduce(0, Integer::sum); long time1 = System.currentTimeMillis() - start1; System.out.println(&#34;Sequential: &#34; &#43; sum1 &#43; &#34; - &#34; &#43; time1 &#43; &#34;ms&#34;); // Parallel stream - nhanh hơn với dữ liệu lớn long start2 = System.currentTimeMillis(); int sum2 = numbers.parallelStream() .map(n -&gt; n * 2) .reduce(0, Integer::sum); long time2 = System.currentTimeMillis() - start2; System.out.println(&#34;Parallel: &#34; &#43; sum2 &#43; &#34; - &#34; &#43; time2 &#43; &#34;ms&#34;); } } Các phương thức hữu ích public class StreamMethodsExample { public static void main(String[] args) { List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10); // distinct() - Loại bỏ duplicate List&lt;Integer&gt; duplicates = Arrays.asList(1, 2, 2, 3, 3, 3, 4); List&lt;Integer&gt; unique = duplicates.stream() .distinct() .collect(Collectors.toList()); System.out.println(&#34;Unique: &#34; &#43; unique); // limit() - Giới hạn số phần tử List&lt;Integer&gt; first5 = numbers.stream() .limit(5) .collect(Collectors.toList()); System.out.println(&#34;5 phần tử đầu: &#34; &#43; first5); // skip() - Bỏ qua n phần tử đầu List&lt;Integer&gt; skipFirst3 = numbers.stream() .skip(3) .collect(Collectors.toList()); System.out.println(&#34;Bỏ 3 phần tử đầu: &#34; &#43; skipFirst3); // anyMatch() - Có phần tử nào thỏa mãn không boolean hasEven = numbers.stream() .anyMatch(n -&gt; n % 2 == 0); System.out.println(&#34;Có số chẵn: &#34; &#43; hasEven); // allMatch() - Tất cả đều thỏa mãn không boolean allPositive = numbers.stream() .allMatch(n -&gt; n &gt; 0); System.out.println(&#34;Tất cả đều dương: &#34; &#43; allPositive); // noneMatch() - Không có phần tử nào thỏa mãn boolean noNegative = numbers.stream() .noneMatch(n -&gt; n &lt; 0); System.out.println(&#34;Không có số âm: &#34; &#43; noNegative); // findFirst() - Tìm phần tử đầu tiên Optional&lt;Integer&gt; first = numbers.stream() .filter(n -&gt; n &gt; 5) .findFirst(); first.ifPresent(n -&gt; System.out.println(&#34;Số đầu tiên &gt; 5: &#34; &#43; n)); // findAny() - Tìm phần tử bất kỳ Optional&lt;Integer&gt; any = numbers.stream() .filter(n -&gt; n % 2 == 0) .findAny(); any.ifPresent(n -&gt; System.out.println(&#34;Số chẵn bất kỳ: &#34; &#43; n)); } } FlatMap - Làm phẳng Stream public class FlatMapExample { public static void main(String[] args) { // List của List List&lt;List&lt;Integer&gt;&gt; nestedList = Arrays.asList( Arrays.asList(1, 2, 3), Arrays.asList(4, 5, 6), Arrays.asList(7, 8, 9) ); // Làm phẳng thành List đơn List&lt;Integer&gt; flatList = nestedList.stream() .flatMap(list -&gt; list.stream()) .collect(Collectors.toList()); System.out.println(&#34;Flat list: &#34; &#43; flatList); // [1, 2, 3, 4, 5, 6, 7, 8, 9] // Ví dụ với String List&lt;String&gt; sentences = Arrays.asList( &#34;Hello World&#34;, &#34;Java Stream API&#34;, &#34;FlatMap Example&#34; ); // Lấy tất cả các từ List&lt;String&gt; words = sentences.stream() .flatMap(sentence -&gt; Arrays.stream(sentence.split(&#34; &#34;))) .collect(Collectors.toList()); System.out.println(&#34;Words: &#34; &#43; words); // [Hello, World, Java, Stream, API, FlatMap, Example] } } Peek - Debug và Side Effects public class PeekExample { public static void main(String[] args) { List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5); // Peek để debug List&lt;Integer&gt; result = numbers.stream() .peek(n -&gt; System.out.println(&#34;Original: &#34; &#43; n)) .map(n -&gt; n * 2) .peek(n -&gt; System.out.println(&#34;After map: &#34; &#43; n)) .filter(n -&gt; n &gt; 5) .peek(n -&gt; System.out.println(&#34;After filter: &#34; &#43; n)) .collect(Collectors.toList()); System.out.println(&#34;Final result: &#34; &#43; result); } } Ví dụ tổng hợp - Xử lý dữ liệu phức tạp class Product { private String name; private String category; private double price; private int stock; public Product(String name, String category, double price, int stock) { this.name = name; this.category = category; this.price = price; this.stock = stock; } public String getName() { return name; } public String getCategory() { return category; } public double getPrice() { return price; } public int getStock() { return stock; } @Override public String toString() { return name &#43; &#34; ($&#34; &#43; price &#43; &#34;, stock: &#34; &#43; stock &#43; &#34;)&#34;; } } public class ProductAnalysis { public static void main(String[] args) { List&lt;Product&gt; products = Arrays.asList( new Product(&#34;Laptop&#34;, &#34;Electronics&#34;, 1000, 5), new Product(&#34;Phone&#34;, &#34;Electronics&#34;, 500, 10), new Product(&#34;Desk&#34;, &#34;Furniture&#34;, 300, 3), new Product(&#34;Chair&#34;, &#34;Furniture&#34;, 150, 7), new Product(&#34;Monitor&#34;, &#34;Electronics&#34;, 300, 0), new Product(&#34;Tablet&#34;, &#34;Electronics&#34;, 400, 8) ); // 1. Tổng giá trị kho hàng theo category Map&lt;String, Double&gt; valueByCategory = products.stream() .collect(Collectors.groupingBy( Product::getCategory, Collectors.summingDouble(p -&gt; p.getPrice() * p.getStock()) )); System.out.println(&#34;Giá trị kho theo danh mục:&#34;); valueByCategory.forEach((cat, val) -&gt; System.out.println(cat &#43; &#34;: $&#34; &#43; val)); // 2. Sản phẩm Electronics có giá &gt; 400 System.out.println(&#34;\nElectronics giá &gt; $400:&#34;); products.stream() .filter(p -&gt; p.getCategory().equals(&#34;Electronics&#34;)) .filter(p -&gt; p.getPrice() &gt; 400) .forEach(System.out::println); // 3. Top 3 sản phẩm đắt nhất còn hàng System.out.println(&#34;\nTop 3 đắt nhất (còn hàng):&#34;); products.stream() .filter(p -&gt; p.getStock() &gt; 0) .sorted(Comparator.comparing(Product::getPrice).reversed()) .limit(3) .forEach(System.out::println); // 4. Số lượng sản phẩm hết hàng long outOfStock = products.stream() .filter(p -&gt; p.getStock() == 0) .count(); System.out.println(&#34;\nSản phẩm hết hàng: &#34; &#43; outOfStock); // 5. Giá trung bình theo category Map&lt;String, Double&gt; avgPriceByCategory = products.stream() .collect(Collectors.groupingBy( Product::getCategory, Collectors.averagingDouble(Product::getPrice) )); System.out.println(&#34;\nGiá trung bình theo danh mục:&#34;); avgPriceByCategory.forEach((cat, avg) -&gt; System.out.printf(&#34;%s: $%.2f\n&#34;, cat, avg)); // 6. Tất cả sản phẩm Electronics có giá &lt; 1000? boolean allAffordable = products.stream() .filter(p -&gt; p.getCategory().equals(&#34;Electronics&#34;)) .allMatch(p -&gt; p.getPrice() &lt; 1000); System.out.println(&#34;\nTất cả Electronics &lt; $1000: &#34; &#43; allAffordable); } } Best Practices public class StreamBestPractices { public static void main(String[] args) { List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5); // ✅ GOOD: Sử dụng method reference khi có thể numbers.stream() .map(String::valueOf) .forEach(System.out::println); // ❌ BAD: Không nên dùng lambda khi có method reference numbers.stream() .map(n -&gt; String.valueOf(n)) .forEach(s -&gt; System.out.println(s)); // ✅ GOOD: Tránh side effects trong stream List&lt;Integer&gt; doubled = numbers.stream() .map(n -&gt; n * 2) .collect(Collectors.toList()); // ❌ BAD: Side effects (thay đổi external state) List&lt;Integer&gt; result = new ArrayList&lt;&gt;(); numbers.stream().forEach(n -&gt; result.add(n * 2)); // Tránh làm như này // ✅ GOOD: Sử dụng parallel stream cho tác vụ CPU-intensive int sum = numbers.parallelStream() .mapToInt(Integer::intValue) .sum(); // ✅ GOOD: Chain operations một cách hợp lý List&lt;String&gt; processed = numbers.stream() .filter(n -&gt; n % 2 == 0) .map(n -&gt; n * 2) .map(String::valueOf) .collect(Collectors.toList()); } } Kết luận Stream API giúp:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-21 13:00:00 +0700 +07'>October 21, 2025</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;·&nbsp;<span>Tên của bạn</span></footer>
+  <a class="entry-link" aria-label="post link to Stream API trong Java 8&#43;" href="http://localhost:1313/posts/java-stream-api/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Blog của [Tên bạn]</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

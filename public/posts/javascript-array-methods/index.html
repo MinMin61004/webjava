@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Các phương thức Array quan trọng trong JavaScript | Blog của [Tên bạn]</title>
+<meta name="keywords" content="JavaScript, Array, ES6">
+<meta name="description" content="Array Methods trong JavaScript
+JavaScript cung cấp nhiều phương thức mạnh mẽ để thao tác với mảng.
+map() - Chuyển đổi mảng
+// Tạo mảng mới với các phần tử đã chuyển đổi
+const numbers = [1, 2, 3, 4, 5];
+
+// Nhân đôi mỗi số
+const doubled = numbers.map(num =&gt; num * 2);
+console.log(doubled); // [2, 4, 6, 8, 10]
+
+// Chuyển đổi object
+const users = [
+    { name: &#39;Alice&#39;, age: 25 },
+    { name: &#39;Bob&#39;, age: 30 }
+];
+
+const names = users.map(user =&gt; user.name);
+console.log(names); // [&#39;Alice&#39;, &#39;Bob&#39;]
+
+// Thêm thuộc tính mới
+const usersWithId = users.map((user, index) =&gt; ({
+    ...user,
+    id: index &#43; 1
+}));
+console.log(usersWithId);
+// [{ name: &#39;Alice&#39;, age: 25, id: 1 }, { name: &#39;Bob&#39;, age: 30, id: 2 }]
+filter() - Lọc mảng
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Lọc số chẵn
+const evenNumbers = numbers.filter(num =&gt; num % 2 === 0);
+console.log(evenNumbers); // [2, 4, 6, 8, 10]
+
+// Lọc số lớn hơn 5
+const greaterThanFive = numbers.filter(num =&gt; num &gt; 5);
+console.log(greaterThanFive); // [6, 7, 8, 9, 10]
+
+// Lọc user theo điều kiện
+const users = [
+    { name: &#39;Alice&#39;, age: 25, active: true },
+    { name: &#39;Bob&#39;, age: 17, active: false },
+    { name: &#39;Charlie&#39;, age: 30, active: true }
+];
+
+const activeAdults = users.filter(user =&gt; user.age &gt;= 18 &amp;&amp; user.active);
+console.log(activeAdults);
+// [{ name: &#39;Alice&#39;, age: 25, active: true }, { name: &#39;Charlie&#39;, age: 30, active: true }]
+reduce() - Tính toán tổng hợp
+const numbers = [1, 2, 3, 4, 5];
+
+// Tính tổng
+const sum = numbers.reduce((acc, num) =&gt; acc &#43; num, 0);
+console.log(&#39;Tổng:&#39;, sum); // 15
+
+// Tính tích
+const product = numbers.reduce((acc, num) =&gt; acc * num, 1);
+console.log(&#39;Tích:&#39;, product); // 120
+
+// Tìm max
+const max = numbers.reduce((max, num) =&gt; num &gt; max ? num : max, numbers[0]);
+console.log(&#39;Max:&#39;, max); // 5
+
+// Đếm số lần xuất hiện
+const fruits = [&#39;apple&#39;, &#39;banana&#39;, &#39;apple&#39;, &#39;orange&#39;, &#39;banana&#39;, &#39;apple&#39;];
+const count = fruits.reduce((acc, fruit) =&gt; {
+    acc[fruit] = (acc[fruit] || 0) &#43; 1;
+    return acc;
+}, {});
+console.log(count); // { apple: 3, banana: 2, orange: 1 }
+
+// Nhóm theo thuộc tính
+const people = [
+    { name: &#39;Alice&#39;, age: 25 },
+    { name: &#39;Bob&#39;, age: 30 },
+    { name: &#39;Charlie&#39;, age: 25 }
+];
+
+const groupedByAge = people.reduce((acc, person) =&gt; {
+    const age = person.age;
+    if (!acc[age]) acc[age] = [];
+    acc[age].push(person);
+    return acc;
+}, {});
+console.log(groupedByAge);
+// { 25: [{name: &#39;Alice&#39;, age: 25}, {name: &#39;Charlie&#39;, age: 25}], 30: [{name: &#39;Bob&#39;, age: 30}] }
+find() và findIndex()
+const users = [
+    { id: 1, name: &#39;Alice&#39;, age: 25 },
+    { id: 2, name: &#39;Bob&#39;, age: 30 },
+    { id: 3, name: &#39;Charlie&#39;, age: 25 }
+];
+
+// find() - Tìm phần tử đầu tiên thỏa mãn
+const user = users.find(u =&gt; u.id === 2);
+console.log(user); // { id: 2, name: &#39;Bob&#39;, age: 30 }
+
+const youngUser = users.find(u =&gt; u.age &lt; 30);
+console.log(youngUser); // { id: 1, name: &#39;Alice&#39;, age: 25 }
+
+// findIndex() - Tìm index của phần tử
+const index = users.findIndex(u =&gt; u.name === &#39;Charlie&#39;);
+console.log(index); // 2
+
+// Không tìm thấy
+const notFound = users.find(u =&gt; u.age &gt; 50);
+console.log(notFound); // undefined
+some() và every()
+const numbers = [1, 2, 3, 4, 5];
+
+// some() - Có ít nhất 1 phần tử thỏa mãn
+const hasEven = numbers.some(num =&gt; num % 2 === 0);
+console.log(&#39;Có số chẵn:&#39;, hasEven); // true
+
+const hasNegative = numbers.some(num =&gt; num &lt; 0);
+console.log(&#39;Có số âm:&#39;, hasNegative); // false
+
+// every() - Tất cả đều thỏa mãn
+const allPositive = numbers.every(num =&gt; num &gt; 0);
+console.log(&#39;Tất cả đều dương:&#39;, allPositive); // true
+
+const allEven = numbers.every(num =&gt; num % 2 === 0);
+console.log(&#39;Tất cả đều chẵn:&#39;, allEven); // false
+
+// Ứng dụng thực tế
+const users = [
+    { name: &#39;Alice&#39;, age: 25 },
+    { name: &#39;Bob&#39;, age: 30 },
+    { name: &#39;Charlie&#39;, age: 17 }
+];
+
+const hasMinor = users.some(user =&gt; user.age &lt; 18);
+console.log(&#39;Có người chưa đủ 18:&#39;, hasMinor); // true
+
+const allAdults = users.every(user =&gt; user.age &gt;= 18);
+console.log(&#39;Tất cả đều trưởng thành:&#39;, allAdults); // false
+forEach() - Duyệt mảng
+const numbers = [1, 2, 3, 4, 5];
+
+// Cơ bản
+numbers.forEach(num =&gt; {
+    console.log(num * 2);
+});
+
+// Với index và array
+numbers.forEach((num, index, arr) =&gt; {
+    console.log(`Index ${index}: ${num} (total: ${arr.length})`);
+});
+
+// Ứng dụng thực tế
+const cart = [
+    { name: &#39;Laptop&#39;, price: 1000, quantity: 1 },
+    { name: &#39;Mouse&#39;, price: 20, quantity: 2 }
+];
+
+let total = 0;
+cart.forEach(item =&gt; {
+    total &#43;= item.price * item.quantity;
+});
+console.log(&#39;Tổng tiền:&#39;, total); // 1040
+sort() - Sắp xếp
+// Sắp xếp số
+const numbers = [5, 2, 8, 1, 9];
+numbers.sort((a, b) =&gt; a - b); // Tăng dần
+console.log(numbers); // [1, 2, 5, 8, 9]
+
+numbers.sort((a, b) =&gt; b - a); // Giảm dần
+console.log(numbers); // [9, 8, 5, 2, 1]
+
+// Sắp xếp chuỗi
+const names = [&#39;Charlie&#39;, &#39;Alice&#39;, &#39;Bob&#39;];
+names.sort();
+console.log(names); // [&#39;Alice&#39;, &#39;Bob&#39;, &#39;Charlie&#39;]
+
+// Sắp xếp object
+const students = [
+    { name: &#39;Alice&#39;, grade: 85 },
+    { name: &#39;Bob&#39;, grade: 92 },
+    { name: &#39;Charlie&#39;, grade: 78 }
+];
+
+students.sort((a, b) =&gt; b.grade - a.grade);
+console.log(students);
+// [{ name: &#39;Bob&#39;, grade: 92 }, { name: &#39;Alice&#39;, grade: 85 }, { name: &#39;Charlie&#39;, grade: 78 }]
+
+// Sắp xếp theo nhiều tiêu chí
+students.sort((a, b) =&gt; {
+    if (a.grade === b.grade) {
+        return a.name.localeCompare(b.name);
+    }
+    return b.grade - a.grade;
+});
+includes(), indexOf(), lastIndexOf()
+const fruits = [&#39;apple&#39;, &#39;banana&#39;, &#39;orange&#39;, &#39;apple&#39;];
+
+// includes() - Kiểm tra tồn tại
+console.log(fruits.includes(&#39;banana&#39;)); // true
+console.log(fruits.includes(&#39;grape&#39;)); // false
+
+// indexOf() - Tìm vị trí đầu tiên
+console.log(fruits.indexOf(&#39;apple&#39;)); // 0
+console.log(fruits.indexOf(&#39;grape&#39;)); // -1
+
+// lastIndexOf() - Tìm vị trí cuối cùng
+console.log(fruits.lastIndexOf(&#39;apple&#39;)); // 3
+
+// Với startIndex
+console.log(fruits.indexOf(&#39;apple&#39;, 1)); // 3
+slice() và splice()
+const numbers = [1, 2, 3, 4, 5];
+
+// slice() - Không thay đổi mảng gốc
+const sliced = numbers.slice(1, 4);
+console.log(sliced); // [2, 3, 4]
+console.log(numbers); // [1, 2, 3, 4, 5] - không đổi
+
+// splice() - Thay đổi mảng gốc
+const arr = [1, 2, 3, 4, 5];
+
+// Xóa phần tử
+arr.splice(2, 1); // Xóa 1 phần tử tại index 2
+console.log(arr); // [1, 2, 4, 5]
+
+// Thêm phần tử
+arr.splice(2, 0, 99, 100); // Thêm tại index 2
+console.log(arr); // [1, 2, 99, 100, 4, 5]
+
+// Thay thế
+arr.splice(1, 2, &#39;a&#39;, &#39;b&#39;); // Xóa 2, thêm &#39;a&#39;, &#39;b&#39; tại index 1
+console.log(arr); // [1, &#39;a&#39;, &#39;b&#39;, 100, 4, 5]
+concat() và join()
+// concat() - Nối mảng
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = arr1.concat(arr2);
+console.log(combined); // [1, 2, 3, 4, 5, 6]
+
+// Hoặc dùng spread operator
+const combined2 = [...arr1, ...arr2];
+console.log(combined2); // [1, 2, 3, 4, 5, 6]
+
+// join() - Nối thành chuỗi
+const words = [&#39;Hello&#39;, &#39;World&#39;, &#39;JavaScript&#39;];
+console.log(words.join(&#39; &#39;)); // &#34;Hello World JavaScript&#34;
+console.log(words.join(&#39;-&#39;)); // &#34;Hello-World-JavaScript&#34;
+console.log(words.join(&#39;&#39;)); // &#34;HelloWorldJavaScript&#34;
+Ví dụ thực tế kết hợp
+// Quản lý danh sách sản phẩm
+const products = [
+    { id: 1, name: &#39;Laptop&#39;, price: 1000, category: &#39;Electronics&#39;, inStock: true },
+    { id: 2, name: &#39;Mouse&#39;, price: 20, category: &#39;Electronics&#39;, inStock: true },
+    { id: 3, name: &#39;Desk&#39;, price: 300, category: &#39;Furniture&#39;, inStock: false },
+    { id: 4, name: &#39;Chair&#39;, price: 150, category: &#39;Furniture&#39;, inStock: true },
+    { id: 5, name: &#39;Monitor&#39;, price: 300, category: &#39;Electronics&#39;, inStock: true }
+];
+
+// 1. Lọc sản phẩm còn hàng và giá &lt; 500
+const availableProducts = products
+    .filter(p =&gt; p.inStock &amp;&amp; p.price &lt; 500)
+    .map(p =&gt; ({ name: p.name, price: p.price }));
+console.log(&#39;Sản phẩm khả dụng:&#39;, availableProducts);
+
+// 2. Tính tổng giá trị kho hàng
+const totalValue = products
+    .filter(p =&gt; p.inStock)
+    .reduce((sum, p) =&gt; sum &#43; p.price, 0);
+console.log(&#39;Tổng giá trị:&#39;, totalValue);
+
+// 3. Nhóm theo category
+const byCategory = products.reduce((acc, product) =&gt; {
+    const category = product.category;
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(product);
+    return acc;
+}, {});
+console.log(&#39;Theo danh mục:&#39;, byCategory);
+
+// 4. Tìm sản phẩm đắt nhất
+const mostExpensive = products.reduce((max, p) =&gt; 
+    p.price &gt; max.price ? p : max
+);
+console.log(&#39;Đắt nhất:&#39;, mostExpensive);
+
+// 5. Sắp xếp theo giá giảm dần
+const sortedByPrice = [...products]
+    .sort((a, b) =&gt; b.price - a.price)
+    .map(p =&gt; `${p.name}: $${p.price}`);
+console.log(&#39;Sắp xếp theo giá:&#39;, sortedByPrice);
+
+// 6. Kiểm tra có sản phẩm Electronics không
+const hasElectronics = products.some(p =&gt; p.category === &#39;Electronics&#39;);
+console.log(&#39;Có Electronics:&#39;, hasElectronics);
+
+// 7. Tất cả sản phẩm có giá &gt; 10?
+const allExpensive = products.every(p =&gt; p.price &gt; 10);
+console.log(&#39;Tất cả &gt; $10:&#39;, allExpensive);
+Kết luận
+Array methods giúp:">
+<meta name="author" content="Tên của bạn">
+<link rel="canonical" href="http://localhost:1313/posts/javascript-array-methods/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a482bf00fa5c046040ef7973ad5fdf5657890cacb596c93f1382f664ca542074.css" integrity="sha256-pIK/APpcBGBA73lzrV/fVleJDKy1lsk/E4L2ZMpUIHQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/javascript-array-methods/">
+<link rel="stylesheet" href="/css/custom.css">
+
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Blog của [Tên bạn] (Alt + H)">Blog của [Tên bạn]</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="Profile">
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="http://localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/posts/">Posts</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Các phương thức Array quan trọng trong JavaScript
+    </h1>
+    <div class="post-meta"><span title='2025-10-21 14:00:00 +0700 +07'>October 21, 2025</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Tên của bạn</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="array-methods-trong-javascript">Array Methods trong JavaScript<a hidden class="anchor" aria-hidden="true" href="#array-methods-trong-javascript">#</a></h1>
+<p>JavaScript cung cấp nhiều phương thức mạnh mẽ để thao tác với mảng.</p>
+<h2 id="map---chuyển-đổi-mảng">map() - Chuyển đổi mảng<a hidden class="anchor" aria-hidden="true" href="#map---chuyển-đổi-mảng">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Tạo mảng mới với các phần tử đã chuyển đổi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Nhân đôi mỗi số
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">doubled</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">num</span> =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">doubled</span>); <span style="color:#75715e">// [2, 4, 6, 8, 10]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Chuyển đổi object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">users</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bob&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">names</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">user</span> =&gt; <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">names</span>); <span style="color:#75715e">// [&#39;Alice&#39;, &#39;Bob&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Thêm thuộc tính mới
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">usersWithId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">index</span>) =&gt; ({
+</span></span><span style="display:flex;"><span>    ...<span style="color:#a6e22e">user</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>}));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">usersWithId</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// [{ name: &#39;Alice&#39;, age: 25, id: 1 }, { name: &#39;Bob&#39;, age: 30, id: 2 }]
+</span></span></span></code></pre></div><h2 id="filter---lọc-mảng">filter() - Lọc mảng<a hidden class="anchor" aria-hidden="true" href="#filter---lọc-mảng">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lọc số chẵn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">evenNumbers</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">num</span> =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">evenNumbers</span>); <span style="color:#75715e">// [2, 4, 6, 8, 10]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lọc số lớn hơn 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">greaterThanFive</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">num</span> =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">greaterThanFive</span>); <span style="color:#75715e">// [6, 7, 8, 9, 10]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Lọc user theo điều kiện
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">users</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25</span>, <span style="color:#a6e22e">active</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bob&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">17</span>, <span style="color:#a6e22e">active</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Charlie&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>, <span style="color:#a6e22e">active</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">activeAdults</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">user</span> =&gt; <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">18</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">active</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">activeAdults</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// [{ name: &#39;Alice&#39;, age: 25, active: true }, { name: &#39;Charlie&#39;, age: 30, active: true }]
+</span></span></span></code></pre></div><h2 id="reduce---tính-toán-tổng-hợp">reduce() - Tính toán tổng hợp<a hidden class="anchor" aria-hidden="true" href="#reduce---tính-toán-tổng-hợp">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tính tổng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">num</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">num</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tổng:&#39;</span>, <span style="color:#a6e22e">sum</span>); <span style="color:#75715e">// 15
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tính tích
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">product</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">num</span>) =&gt; <span style="color:#a6e22e">acc</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">num</span>, <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tích:&#39;</span>, <span style="color:#a6e22e">product</span>); <span style="color:#75715e">// 120
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tìm max
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">max</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">max</span>, <span style="color:#a6e22e">num</span>) =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">max</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">num</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">max</span>, <span style="color:#a6e22e">numbers</span>[<span style="color:#ae81ff">0</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Max:&#39;</span>, <span style="color:#a6e22e">max</span>); <span style="color:#75715e">// 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Đếm số lần xuất hiện
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;banana&#39;</span>, <span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;orange&#39;</span>, <span style="color:#e6db74">&#39;banana&#39;</span>, <span style="color:#e6db74">&#39;apple&#39;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">fruit</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">fruit</span>] <span style="color:#f92672">=</span> (<span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">fruit</span>] <span style="color:#f92672">||</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">acc</span>;
+</span></span><span style="display:flex;"><span>}, {});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">count</span>); <span style="color:#75715e">// { apple: 3, banana: 2, orange: 1 }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Nhóm theo thuộc tính
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">people</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bob&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Charlie&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">groupedByAge</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">people</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">person</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">age</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">age</span>]) <span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">age</span>] <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">age</span>].<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">person</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">acc</span>;
+</span></span><span style="display:flex;"><span>}, {});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">groupedByAge</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// { 25: [{name: &#39;Alice&#39;, age: 25}, {name: &#39;Charlie&#39;, age: 25}], 30: [{name: &#39;Bob&#39;, age: 30}] }
+</span></span></span></code></pre></div><h2 id="find-và-findindex">find() và findIndex()<a hidden class="anchor" aria-hidden="true" href="#find-và-findindex">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">users</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bob&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Charlie&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// find() - Tìm phần tử đầu tiên thỏa mãn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">u</span> =&gt; <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">user</span>); <span style="color:#75715e">// { id: 2, name: &#39;Bob&#39;, age: 30 }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">youngUser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">u</span> =&gt; <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">30</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">youngUser</span>); <span style="color:#75715e">// { id: 1, name: &#39;Alice&#39;, age: 25 }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// findIndex() - Tìm index của phần tử
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">findIndex</span>(<span style="color:#a6e22e">u</span> =&gt; <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Charlie&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">index</span>); <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Không tìm thấy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">notFound</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">u</span> =&gt; <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">notFound</span>); <span style="color:#75715e">// undefined
+</span></span></span></code></pre></div><h2 id="some-và-every">some() và every()<a hidden class="anchor" aria-hidden="true" href="#some-và-every">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// some() - Có ít nhất 1 phần tử thỏa mãn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hasEven</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">some</span>(<span style="color:#a6e22e">num</span> =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Có số chẵn:&#39;</span>, <span style="color:#a6e22e">hasEven</span>); <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hasNegative</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">some</span>(<span style="color:#a6e22e">num</span> =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Có số âm:&#39;</span>, <span style="color:#a6e22e">hasNegative</span>); <span style="color:#75715e">// false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// every() - Tất cả đều thỏa mãn
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">allPositive</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">every</span>(<span style="color:#a6e22e">num</span> =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tất cả đều dương:&#39;</span>, <span style="color:#a6e22e">allPositive</span>); <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">allEven</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">every</span>(<span style="color:#a6e22e">num</span> =&gt; <span style="color:#a6e22e">num</span> <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tất cả đều chẵn:&#39;</span>, <span style="color:#a6e22e">allEven</span>); <span style="color:#75715e">// false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ứng dụng thực tế
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">users</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">25</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bob&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Charlie&#39;</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">17</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hasMinor</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">some</span>(<span style="color:#a6e22e">user</span> =&gt; <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">18</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Có người chưa đủ 18:&#39;</span>, <span style="color:#a6e22e">hasMinor</span>); <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">allAdults</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">every</span>(<span style="color:#a6e22e">user</span> =&gt; <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">18</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tất cả đều trưởng thành:&#39;</span>, <span style="color:#a6e22e">allAdults</span>); <span style="color:#75715e">// false
+</span></span></span></code></pre></div><h2 id="foreach---duyệt-mảng">forEach() - Duyệt mảng<a hidden class="anchor" aria-hidden="true" href="#foreach---duyệt-mảng">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Cơ bản
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">num</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">num</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Với index và array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">num</span>, <span style="color:#a6e22e">index</span>, <span style="color:#a6e22e">arr</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Index </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">index</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">num</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> (total: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)`</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Ứng dụng thực tế
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cart</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Laptop&#39;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span>, <span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Mouse&#39;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">20</span>, <span style="color:#a6e22e">quantity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">total</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cart</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">item</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">total</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">quantity</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tổng tiền:&#39;</span>, <span style="color:#a6e22e">total</span>); <span style="color:#75715e">// 1040
+</span></span></span></code></pre></div><h2 id="sort---sắp-xếp">sort() - Sắp xếp<a hidden class="anchor" aria-hidden="true" href="#sort---sắp-xếp">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Sắp xếp số
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">9</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">sort</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; <span style="color:#a6e22e">a</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">b</span>); <span style="color:#75715e">// Tăng dần
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">numbers</span>); <span style="color:#75715e">// [1, 2, 5, 8, 9]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">sort</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; <span style="color:#a6e22e">b</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">a</span>); <span style="color:#75715e">// Giảm dần
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">numbers</span>); <span style="color:#75715e">// [9, 8, 5, 2, 1]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Sắp xếp chuỗi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">names</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Charlie&#39;</span>, <span style="color:#e6db74">&#39;Alice&#39;</span>, <span style="color:#e6db74">&#39;Bob&#39;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">names</span>.<span style="color:#a6e22e">sort</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">names</span>); <span style="color:#75715e">// [&#39;Alice&#39;, &#39;Bob&#39;, &#39;Charlie&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Sắp xếp object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">students</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Alice&#39;</span>, <span style="color:#a6e22e">grade</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">85</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Bob&#39;</span>, <span style="color:#a6e22e">grade</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">92</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Charlie&#39;</span>, <span style="color:#a6e22e">grade</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">78</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">students</span>.<span style="color:#a6e22e">sort</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">grade</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">grade</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">students</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// [{ name: &#39;Bob&#39;, grade: 92 }, { name: &#39;Alice&#39;, grade: 85 }, { name: &#39;Charlie&#39;, grade: 78 }]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Sắp xếp theo nhiều tiêu chí
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">students</span>.<span style="color:#a6e22e">sort</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">grade</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">grade</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">localeCompare</span>(<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">name</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">grade</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">grade</span>;
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="includes-indexof-lastindexof">includes(), indexOf(), lastIndexOf()<a hidden class="anchor" aria-hidden="true" href="#includes-indexof-lastindexof">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fruits</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#e6db74">&#39;banana&#39;</span>, <span style="color:#e6db74">&#39;orange&#39;</span>, <span style="color:#e6db74">&#39;apple&#39;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// includes() - Kiểm tra tồn tại
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#39;banana&#39;</span>)); <span style="color:#75715e">// true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#39;grape&#39;</span>)); <span style="color:#75715e">// false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// indexOf() - Tìm vị trí đầu tiên
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;apple&#39;</span>)); <span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;grape&#39;</span>)); <span style="color:#75715e">// -1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// lastIndexOf() - Tìm vị trí cuối cùng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">lastIndexOf</span>(<span style="color:#e6db74">&#39;apple&#39;</span>)); <span style="color:#75715e">// 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Với startIndex
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">fruits</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#e6db74">&#39;apple&#39;</span>, <span style="color:#ae81ff">1</span>)); <span style="color:#75715e">// 3
+</span></span></span></code></pre></div><h2 id="slice-và-splice">slice() và splice()<a hidden class="anchor" aria-hidden="true" href="#slice-và-splice">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">numbers</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// slice() - Không thay đổi mảng gốc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sliced</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">numbers</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sliced</span>); <span style="color:#75715e">// [2, 3, 4]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">numbers</span>); <span style="color:#75715e">// [1, 2, 3, 4, 5] - không đổi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// splice() - Thay đổi mảng gốc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arr</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Xóa phần tử
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// Xóa 1 phần tử tại index 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>); <span style="color:#75715e">// [1, 2, 4, 5]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Thêm phần tử
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">99</span>, <span style="color:#ae81ff">100</span>); <span style="color:#75715e">// Thêm tại index 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>); <span style="color:#75715e">// [1, 2, 99, 100, 4, 5]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Thay thế
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">splice</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>); <span style="color:#75715e">// Xóa 2, thêm &#39;a&#39;, &#39;b&#39; tại index 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">arr</span>); <span style="color:#75715e">// [1, &#39;a&#39;, &#39;b&#39;, 100, 4, 5]
+</span></span></span></code></pre></div><h2 id="concat-và-join">concat() và join()<a hidden class="anchor" aria-hidden="true" href="#concat-và-join">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// concat() - Nối mảng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arr1</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">arr2</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>];
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">combined</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr1</span>.<span style="color:#a6e22e">concat</span>(<span style="color:#a6e22e">arr2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">combined</span>); <span style="color:#75715e">// [1, 2, 3, 4, 5, 6]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Hoặc dùng spread operator
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">combined2</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">arr1</span>, ...<span style="color:#a6e22e">arr2</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">combined2</span>); <span style="color:#75715e">// [1, 2, 3, 4, 5, 6]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// join() - Nối thành chuỗi
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">words</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;Hello&#39;</span>, <span style="color:#e6db74">&#39;World&#39;</span>, <span style="color:#e6db74">&#39;JavaScript&#39;</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">words</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39; &#39;</span>)); <span style="color:#75715e">// &#34;Hello World JavaScript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">words</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;-&#39;</span>)); <span style="color:#75715e">// &#34;Hello-World-JavaScript&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">words</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>)); <span style="color:#75715e">// &#34;HelloWorldJavaScript&#34;
+</span></span></span></code></pre></div><h2 id="ví-dụ-thực-tế-kết-hợp">Ví dụ thực tế kết hợp<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-thực-tế-kết-hợp">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Quản lý danh sách sản phẩm
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">products</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Laptop&#39;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span>, <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Electronics&#39;</span>, <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Mouse&#39;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">20</span>, <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Electronics&#39;</span>, <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Desk&#39;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>, <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Furniture&#39;</span>, <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Chair&#39;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">150</span>, <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Furniture&#39;</span>, <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Monitor&#39;</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">300</span>, <span style="color:#a6e22e">category</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Electronics&#39;</span>, <span style="color:#a6e22e">inStock</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Lọc sản phẩm còn hàng và giá &lt; 500
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">availableProducts</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">products</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">p</span> =&gt; <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">inStock</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">500</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">p</span> =&gt; ({ <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">price</span> }));
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Sản phẩm khả dụng:&#39;</span>, <span style="color:#a6e22e">availableProducts</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Tính tổng giá trị kho hàng
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">totalValue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">products</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">p</span> =&gt; <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">inStock</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">sum</span>, <span style="color:#a6e22e">p</span>) =&gt; <span style="color:#a6e22e">sum</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">price</span>, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tổng giá trị:&#39;</span>, <span style="color:#a6e22e">totalValue</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Nhóm theo category
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">byCategory</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">acc</span>, <span style="color:#a6e22e">product</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">category</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">product</span>.<span style="color:#a6e22e">category</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">category</span>]) <span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">category</span>] <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">acc</span>[<span style="color:#a6e22e">category</span>].<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">product</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">acc</span>;
+</span></span><span style="display:flex;"><span>}, {});
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Theo danh mục:&#39;</span>, <span style="color:#a6e22e">byCategory</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 4. Tìm sản phẩm đắt nhất
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mostExpensive</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">max</span>, <span style="color:#a6e22e">p</span>) =&gt; 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">max</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">p</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">max</span>
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Đắt nhất:&#39;</span>, <span style="color:#a6e22e">mostExpensive</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 5. Sắp xếp theo giá giảm dần
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sortedByPrice</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">products</span>]
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">sort</span>((<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>) =&gt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">price</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">p</span> =&gt; <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: $</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">price</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Sắp xếp theo giá:&#39;</span>, <span style="color:#a6e22e">sortedByPrice</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 6. Kiểm tra có sản phẩm Electronics không
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">hasElectronics</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">some</span>(<span style="color:#a6e22e">p</span> =&gt; <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">category</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;Electronics&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Có Electronics:&#39;</span>, <span style="color:#a6e22e">hasElectronics</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 7. Tất cả sản phẩm có giá &gt; 10?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">allExpensive</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">every</span>(<span style="color:#a6e22e">p</span> =&gt; <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Tất cả &gt; $10:&#39;</span>, <span style="color:#a6e22e">allExpensive</span>);
+</span></span></code></pre></div><h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Array methods giúp:</p>
+<ul>
+<li>Code ngắn gọn, dễ đọc</li>
+<li>Tránh mutations không mong muốn</li>
+<li>Functional programming style</li>
+<li>Hiệu suất tốt với built-in methods</li>
+</ul>
+<h2 id="tài-liệu-tham-khảo">Tài liệu tham khảo<a hidden class="anchor" aria-hidden="true" href="#tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN Array Methods</a></li>
+<li><a href="https://www.freecodecamp.org/news/complete-introduction-to-the-most-useful-javascript-array-methods/">JavaScript Array Methods Guide</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/javascript/">JavaScript</a></li>
+      <li><a href="http://localhost:1313/tags/array/">Array</a></li>
+      <li><a href="http://localhost:1313/tags/es6/">ES6</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/collections-framework-java/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Collections Framework trong Java</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Các phương thức Array quan trọng trong JavaScript on x"
+            href="https://x.com/intent/tweet/?text=C%c3%a1c%20ph%c6%b0%c6%a1ng%20th%e1%bb%a9c%20Array%20quan%20tr%e1%bb%8dng%20trong%20JavaScript&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f&amp;hashtags=JavaScript%2cArray%2cES6">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Các phương thức Array quan trọng trong JavaScript on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f&amp;title=C%c3%a1c%20ph%c6%b0%c6%a1ng%20th%e1%bb%a9c%20Array%20quan%20tr%e1%bb%8dng%20trong%20JavaScript&amp;summary=C%c3%a1c%20ph%c6%b0%c6%a1ng%20th%e1%bb%a9c%20Array%20quan%20tr%e1%bb%8dng%20trong%20JavaScript&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Các phương thức Array quan trọng trong JavaScript on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f&title=C%c3%a1c%20ph%c6%b0%c6%a1ng%20th%e1%bb%a9c%20Array%20quan%20tr%e1%bb%8dng%20trong%20JavaScript">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Các phương thức Array quan trọng trong JavaScript on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Các phương thức Array quan trọng trong JavaScript on whatsapp"
+            href="https://api.whatsapp.com/send?text=C%c3%a1c%20ph%c6%b0%c6%a1ng%20th%e1%bb%a9c%20Array%20quan%20tr%e1%bb%8dng%20trong%20JavaScript%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Các phương thức Array quan trọng trong JavaScript on telegram"
+            href="https://telegram.me/share/url?text=C%c3%a1c%20ph%c6%b0%c6%a1ng%20th%e1%bb%a9c%20Array%20quan%20tr%e1%bb%8dng%20trong%20JavaScript&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Các phương thức Array quan trọng trong JavaScript on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=C%c3%a1c%20ph%c6%b0%c6%a1ng%20th%e1%bb%a9c%20Array%20quan%20tr%e1%bb%8dng%20trong%20JavaScript&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fjavascript-array-methods%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Blog của [Tên bạn]</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
