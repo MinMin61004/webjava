@@ -185,7 +185,7 @@ html, body {
 
 .post-content a {
   color: var(--accent);
-  /* text-decoration: underline; */
+  text-decoration: underline;
   transition: color var(--anim-speed) ease;
 }
 
