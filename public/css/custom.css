@@ -994,3 +994,226 @@ html, body {
   .certificate-title { color: #f0f0f0; }
   .certificate-issuer { color: #60a5fa; }
 }
+
+/* ==================== AVATAR LIGHTBOX ==================== */
+.avatar {
+  cursor: zoom-in !important;
+  transition: all 0.3s ease !important;
+  border-radius: 50% !important;  /* Giữ tròn nếu avatar tròn */
+  border: 2px solid #e5e7eb !important;
+}
+
+.avatar:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15) !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Dark mode cho avatar */
+@media (prefers-color-scheme: dark) {
+  .avatar {
+    border-color: #374151 !important;
+  }
+  .avatar:hover {
+    border-color: #60a5fa !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+  }
+}
+/* ==================== CUSTOM STYLES - BLOG CỦA NGUYỄN VĂN MINH ==================== */
+
+/* ---- 1. Cải thiện card bài viết ---- */
+.post-entry,
+.first-entry {
+  background: var(--entry);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.post-entry::before,
+.first-entry::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3b82f6, #1d4ed8);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.post-entry:hover,
+.first-entry:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+  border-color: #3b82f6;
+}
+
+.post-entry:hover::before,
+.first-entry:hover::before {
+  opacity: 1;
+}
+
+/* ---- 2. Header bài viết đẹp hơn ---- */
+.entry-header h1,
+.entry-header h2 {
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+  color: var(--primary);
+}
+
+.entry-header h1 {
+  font-size: 1.8rem;
+  background: linear-gradient(120deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.entry-header h2 {
+  font-size: 1.4rem;
+  color: #1f2937;
+}
+
+.dark .entry-header h2 {
+  color: #f3f4f6;
+}
+
+/* ---- 3. Nội dung tóm tắt ---- */
+.entry-content p {
+  color: var(--secondary);
+  line-height: 1.7;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+/* ---- 4. Footer bài viết (thời gian, phút đọc) ---- */
+.entry-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--tertiary);
+  flex-wrap: wrap;
+}
+
+.entry-footer span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Icon nhỏ cho thời gian & phút đọc */
+.entry-footer span::before {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.entry-footer span:nth-child(1)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236b7280"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13h-1v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>');
+}
+
+.entry-footer span:nth-child(3)::before {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%236b7280"><path d="M12 6v6l4 2m6-2c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10z"/></svg>');
+}
+
+/* ---- 5. Nút "đọc thêm" (entry-link) ---- */
+.entry-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.post-entry::after {
+  content: 'Đọc thêm →';
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3b82f6;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.post-entry:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- 6. Cải thiện Home Info (phần giới thiệu) ---- */
+.first-entry {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: none;
+  padding: 2rem;
+}
+
+.dark .first-entry {
+  background: linear-gradient(135deg, #1e293b 0%, #1a2332 100%);
+}
+
+.first-entry .entry-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.first-entry .entry-content {
+  font-size: 1.05rem;
+  color: var(--content);
+}
+
+/* ---- 7. Responsive ---- */
+@media (max-width: 768px) {
+  .post-entry,
+  .first-entry {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+  
+  .entry-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .entry-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .post-entry::after {
+    display: none;
+  }
+}
+
+/* ---- 8. Dark mode tinh chỉnh ---- */
+.dark .post-entry,
+.dark .first-entry {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .post-entry:hover,
+.dark .first-entry:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark .post-entry::after {
+  color: #60a5fa;
+}
+
+/* ---- 9. Smooth scroll & focus ---- */
+html {
+  scroll-behavior: smooth;
+}

@@ -59,10 +59,7 @@
 
     </style>
 </noscript>
-{{ $css := resources.Get "css/custom.css" }}
-{{ if $css }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-{{ end }}
+
 </head>
 
 <body class="" id="top">
@@ -141,7 +138,7 @@
 </div>
   </header> 
   <div class="post-content">
-    <img src="/images/avatar.jpg" alt="Hình đại diện của Nguyễn Văn Minh" class="avatar" width="150" height="150">
+    <img src="/images/avatar1.jpg" alt="Hình đại diện của Nguyễn Văn Minh" class="avatar" width="150" height="150">
     <h1 id="giới-thiệu-về-tôi">Giới thiệu về tôi</h1>
     <p><strong>Họ tên:</strong> Nguyễn Văn Minh<br>
     <strong>Trường:</strong> Đại học công nghệ Hutech<br>
@@ -149,15 +146,15 @@
     <h2 id="kỹ-năng">Kỹ năng</h2>
     <ul>
     <li>Java Programming</li>
-    <li>JavaScript & ES6+</li>
-    <li>HTML5 & CSS3</li>
+    <li>JavaScript</li>
+    <li>HTML & CSS</li>
     <li>Git & GitHub</li>
     </ul>
     <h2 id="dự-án">Dự án</h2>
     <h3 id="blog-cá-nhân">Blog cá nhân</h3>
     <ul>
     <li><strong>Công nghệ:</strong> Hugo (SSG), JavaScript</li>
-    <li><strong>Deploy:</strong> GitHub Pages</li>
+    <li><strong>Deploy:</strong> GitHub</li>
     <li><strong>Tính năng:</strong> Chia sẻ bài viết về lập trình</li>
     </ul>
     <h2 id="liên-hệ">Liên hệ</h2>
@@ -344,7 +341,16 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "hidden";
     });
   });
-
+// LIGHTBOX CHO AVATAR (tái sử dụng modal cert)
+  const avatarImg = document.querySelector(".avatar");
+  if (avatarImg) {
+    avatarImg.addEventListener("click", function () {
+      modal.classList.add("active");
+      modalImg.src = this.src;
+      modalImg.alt = this.alt;
+      document.body.style.overflow = "hidden";
+    });
+  }
   closeBtn.onclick = () => {
     modal.classList.remove("active");
     document.body.style.overflow = "";
