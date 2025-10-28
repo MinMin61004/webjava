@@ -1,7 +1,12 @@
----
+<!-- ---
 title: "Profile"
 date: 2025-10-21
 draft: false
+--- -->
+---
+title: "Profile"
+custom_css:
+  - /css/custom.css
 ---
 
 # Giới thiệu về tôi
